@@ -7,7 +7,7 @@ public class GamePanel extends JPanel implements ActionListener
 {
     static final int SCREEN_WiDTH=900
             ;
-    // hii i am rohit s
+    // hii
     static final int SCREEN_HEIGHT=775;
     static final int UNIT_SIZE=25;
     static final int GAME_UNITS=(SCREEN_WiDTH*SCREEN_HEIGHT)/UNIT_SIZE;
