@@ -5,7 +5,9 @@ import java.util.Random;
 import javax.swing.JPanel;
 public class GamePanel extends JPanel implements ActionListener
 {
-    static final int SCREEN_WiDTH=900;
+    static final int SCREEN_WiDTH=900
+            ;
+    // hii i am rohit s
     static final int SCREEN_HEIGHT=775;
     static final int UNIT_SIZE=25;
     static final int GAME_UNITS=(SCREEN_WiDTH*SCREEN_HEIGHT)/UNIT_SIZE;
@@ -54,14 +56,14 @@ public class GamePanel extends JPanel implements ActionListener
                     g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
                 } else {
                     g.setColor(new Color(75, 18, 4));
-                    g.setColor(new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255)));
+//                    g.setColor(new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255)));
                     g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
                 }
             }//scoring here
             g.setColor(Color.green);
             g.setFont(new Font("Ink free",Font.BOLD,30));
             FontMetrics metrics=getFontMetrics(g.getFont());
-            g.drawString("Score=)"+applesEaten,(SCREEN_WiDTH-metrics.stringWidth("Score=)"+applesEaten)),g.getFont().getSize());
+            g.drawString("Score="+applesEaten,(SCREEN_WiDTH-metrics.stringWidth("Score="+applesEaten)),g.getFont().getSize());
         }
         else{
             gameOver(g);
@@ -128,12 +130,25 @@ public class GamePanel extends JPanel implements ActionListener
         g.setColor(Color.green);
         g.setFont(new Font("Ink free",Font.BOLD,75));
         FontMetrics metrics=getFontMetrics(g.getFont());
-        g.drawString("Score=)"+applesEaten,(SCREEN_WiDTH-metrics.stringWidth("Score=)"+applesEaten))/2,g.getFont().getSize());
+        g.drawString("Score="+applesEaten,(SCREEN_WiDTH-metrics.stringWidth("Score=)"+applesEaten))/2,g.getFont().getSize());
         //Game over text
         g.setColor(Color.BLUE);
         g.setFont(new Font("Ink free",Font.BOLD,75));
         metrics = getFontMetrics(g.getFont());
         g.drawString("Well Play  Game Over",(SCREEN_WiDTH-metrics.stringWidth("lnGame Over"))/7,SCREEN_HEIGHT/2);
+
+        g.setColor(Color.CYAN);
+        g.setFont(new Font("Arial",Font.PLAIN,50));
+        g.drawString("Press SPACE to Restart",200,600);
+    }
+    public void restart(){
+
+
+        startGame();
+        direction='R';
+        int Score=0;
+        timer.start();
+        repaint();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -141,13 +156,16 @@ public class GamePanel extends JPanel implements ActionListener
             move();
             checkApple();
             checkCollisions();
+            //restart();
         }
         repaint();
     }
     public  class MyKeyAdapter implements KeyListener {
      @Override
      public void keyPressed(KeyEvent e){
-
+            if(e.getKeyCode()==KeyEvent.VK_SPACE){
+                restart();
+            }
          switch (e.getKeyCode()){
              case KeyEvent.VK_LEFT:
                  if(direction!='R'){
